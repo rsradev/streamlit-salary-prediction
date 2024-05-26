@@ -2,6 +2,7 @@ import streamlit as st
 import pickle 
 import numpy as np
 
+
 def load_modulue():
     with open('./data/steps.pkl', 'rb') as file:
         data = pickle.load(file)
@@ -18,10 +19,11 @@ le_education = data['le_education']
 def show_predict_page():
     st.title('Software Developer Salary Prediction')
 
-    st.write("""
-    #### we need some info to predic the salary
-""")
-
+    st.write(
+        """
+    #### information for the prediction
+        """
+    )
 
     countries = (
         'United States of America',
@@ -51,27 +53,27 @@ def show_predict_page():
     )
 
     country = st.selectbox(
-        'Countrie:',
+        'Country:',
         countries
     )
 
     education = st.selectbox(
-        'Education Level',
+        'Degree',
         education
     )
 
     experience = st.slider(
-        'Years of experience:',
+        'Experience (Years):',
         0,
         50,
-        3 
+        3
     )
 
-    ok = st.button('Calculate Salary')
+    ok = st.button('Predict Salary')
     if ok:
         X = np.array([[country, education, experience]])
-        X[:, 0] = le_country.transform(X[:,0])
-        X[:, 1] = le_education.transform(X[:,1])
+        X[:, 0] = le_country.transform(X[:, 0])
+        X[:, 1] = le_education.transform(X[:, 1])
         X = X.astype(float)
 
         salary = regressor.predict(X)
