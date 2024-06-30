@@ -9,6 +9,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
+    libpq-dev \
+    python-dev \ 
     software-properties-common \
     git \
     && rm -rf /var/lib/apt/lists/*

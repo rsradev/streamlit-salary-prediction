@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     volumes:
-      - data:./data/ 
+      - ./data:/Users/radi/Projects/streamlit-salary-prediction/data/ 
     networks:
       - stack_network
     
