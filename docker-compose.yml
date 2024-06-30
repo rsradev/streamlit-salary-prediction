@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: stackoverflow_survey
+      POSTGRES_USER: survey_user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - stack_network
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - db
+    volumes:
+      - data:./data/ 
+    networks:
+      - stack_network
+    
+
+volumes:
+  pgdata:
+
+networks:
+  stack_network:
