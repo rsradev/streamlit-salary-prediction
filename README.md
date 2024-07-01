@@ -3,7 +3,7 @@ Quickstart:
 
 Download data: 
 `sh get_data.sh`
-if you're not on ARM system please rerun `ipython Prediction.ipynb` to recreate `steps.pkl`
+if you're not on ARM system please rerun `ipython prediction.ipynb` to recreate `steps.pkl`
 
 Run project:
 `pip install -r requirements.txt && streamlit run app.py`
@@ -11,8 +11,6 @@ Run project:
 Docker:
 `sh build.sh && sh run.sh`
 
-Data soruce:
-  [here](https://survey.stackoverflow.co/)
 
 
 
