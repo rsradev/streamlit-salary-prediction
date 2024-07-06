@@ -2,7 +2,7 @@ import pandas as pd
 import psycopg2
 
 
-def create_cursor():
+def create_cursor() -> Tu:
 
     conn = psycopg2.connect(
         dbname='stackoverflow_survey',
@@ -15,10 +15,13 @@ def create_cursor():
     return (conn, cursor)
 
 
+
+
 def clean_data(
-    file_name: str = './data/survey_results_public.csv'
+    file_name: list = ['./data/survey_results_public.csv']
 ) -> pd.DataFrame:
 
+    
     df = pd.read_csv(file_name)
 
     df = df[
@@ -42,12 +45,12 @@ def populate(df: pd.DataFrame) -> None:
 
     conn, cursor = create_cursor()
 
-    cursor.execute(
-        """
-        TRUNCATE TABEL survey
-        """
-    )
-
+    #cursor.execute(
+    #    """
+    #    TRUNCATE TABEL survey
+    #    """
+    #)
+    
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS survey (
@@ -86,5 +89,8 @@ def populate(df: pd.DataFrame) -> None:
 
 if __name__ == '__main__':
     df = clean_data()
+    clean_data()
+    clean_data(['',''])
+    clean_data()
     
     populate(df)
